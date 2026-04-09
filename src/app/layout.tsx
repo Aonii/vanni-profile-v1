@@ -1,24 +1,25 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './globals.css'
+import TopBar from '@/components/TopBar'
 
 // next/font 会在构建时下载字体并自托管，不会向 Google 发出运行时请求
 // variable 模式将字体注入为 CSS 自定义属性，配合 @theme 中的 --font-sans 使用
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "Vanni | Full-Stack Engineer",
+  title: 'Vanni | Full-Stack Engineer',
   description:
-    "Vanni 的个人作品集 — 全栈工程师，前端偏重，热衷工程化与用户体验。",
-};
+    'Vanni 的个人作品集 — 全栈工程师，前端偏重，热衷工程化与用户体验。',
+}
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -28,10 +29,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body className="bg-background text-text min-h-screen font-sans">
+        <TopBar />
         {children}
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout
