@@ -8,44 +8,6 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 bg-[#fdf8f0]/35" />
 
       <div className="relative z-20 flex w-full max-w-[92rem] justify-end px-6">
-        {/* <div className="flex flex-col gap-4 self-start sticky top-20">
-          <h2 className="text-2xl font-semibold uppercase tracking-widest text-text-muted">
-            On this page
-          </h2>
-          <nav className="flex flex-col gap-3">
-            <a
-              href="#tech-stack"
-              className="text-lg font-medium text-text transition-colors hover:text-accent"
-            >
-              Tech Stack
-            </a>
-            <a
-              href="#projects"
-              className="text-lg font-medium text-text transition-colors hover:text-accent"
-            >
-              Projects
-            </a>
-            <a
-              href="#experience"
-              className="text-lg font-medium text-text transition-colors hover:text-accent"
-            >
-              Experience
-            </a>
-            <a
-              href="#gallery"
-              className="text-lg font-medium text-text transition-colors hover:text-accent"
-            >
-              Gallery
-            </a>
-            <a
-              href="#contact"
-              className="text-lg font-medium text-text transition-colors hover:text-accent"
-            >
-              Contact
-            </a>
-          </nav>
-        </div> */}
-
         <div className="flex flex-col gap-6 w-[65%]">
           <div>
             <h1 className="text-5xl font-bold tracking-tight text-text">

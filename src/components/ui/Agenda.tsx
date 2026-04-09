@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 const SECTIONS = [
+  { id: 'hero', label: ' About Me' },
   { id: 'tech-stack', label: 'Tech Stack' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
@@ -12,7 +13,7 @@ const SECTIONS = [
 
 const Agenda = () => {
   const [visible, setVisible] = useState(true)
-  const [activeSection, setActiveSection] = useState<string>('')
+  const [activeSection, setActiveSection] = useState<string>('hero')
   const prevScrollY = useRef(0)
   const prevRatio = useRef(0)
 
