@@ -1,26 +1,31 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Design Tokens ───────────────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Background layers — 奶油暖白色系 */
+  --color-background: #fdf8f0; /* 主底色：温暖奶油白 */
+  --color-surface: #f5ede0; /* 卡片 / 交替 section 底色 */
+  --color-border: #e2d5be; /* 分割线 */
+
+  /* Text — 暖棕色系，避免纯黑的冷硬感 */
+  --color-text: #292218; /* 主文字：深暖棕 */
+  --color-text-muted: #7c6f5e; /* 次要文字：中性暖灰 */
+
+  /* Accent — 琥珀橙，与奶油底色形成自然对比 */
+  --color-accent: #b45309; /* amber-700 */
+  --color-accent-light: #fef3c7; /* amber-100：accent 背景块 */
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fdf8f0;
+  color: #292218;
 }
