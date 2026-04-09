@@ -2,7 +2,8 @@ import Image from 'next/image'
 
 const TopBar = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-transparent">
+    // <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-transparent">
+    <header className="fixed top-0 left-0 right-0 z-50 pb-12 flex items-center justify-between px-6 py-3 bg-gradient-to-b from-[#F1E1B6] to-transparent">
       <div className="flex items-center gap-3 ml-[4%]">
         <Image
           src="/images/avatar.png"

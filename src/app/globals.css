@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ─── Design Tokens ───────────────────────────────────────────────────────── */
 @theme inline {
@@ -16,7 +16,7 @@
   --color-accent-light: #fef3c7; /* amber-100：accent 背景块 */
 
   /* Fonts */
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-funnel-display);
   --font-mono: var(--font-geist-mono);
 }
 
