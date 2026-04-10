@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Funnel_Display } from 'next/font/google'
 import './globals.css'
 import TopBar from '@/components/TopBar'
 import Agenda from '@/components/ui/Agenda'
+import BirdCursor from '@/components/ui/BirdCursor'
 
 // next/font 会在构建时下载字体并自托管，不会向 Google 发出运行时请求
 // variable 模式将字体注入为 CSS 自定义属性，配合 @theme 中的 --font-sans 使用
@@ -37,6 +38,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="fixed inset-0 -z-10 bg-[url('/images/background.png')] bg-cover bg-center" />
         <TopBar />
         <Agenda />
+        <BirdCursor />
         {children}
       </body>
     </html>

@@ -1,5 +1,45 @@
+'use client'
 // Phase 2 实现：Three.js 粒子效果 + 打字机动效 + 鼠标视差
+
+import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+
 const Hero = () => {
+  const [visible, setVisible] = useState(true)
+  const prevScrollY = useRef(0)
+  const prevRatio = useRef(0)
+
+  useEffect(() => {
+    prevScrollY.current = window.scrollY
+
+    const techStack = document.querySelector('#tech-stack')
+    if (!techStack) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const ratio = entry.intersectionRatio
+        const currentScrollY = window.scrollY
+        const isScrollingDown = currentScrollY > prevScrollY.current
+        const isRatioIncreasing = ratio > prevRatio.current
+
+        prevScrollY.current = currentScrollY
+        prevRatio.current = ratio
+
+        if (isScrollingDown && isRatioIncreasing && ratio >= 0.33) {
+          // 只有 下滑 + ratio 增大 → 隐藏
+          setVisible(false)
+        } else if (!isScrollingDown && !isRatioIncreasing && ratio < 0.33) {
+          // 只有 上滑 + ratio 减小 → 显示
+          setVisible(true)
+        }
+      },
+      { threshold: [0, 0.33] }
+    )
+
+    observer.observe(techStack)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section
       id="hero"
@@ -7,8 +47,16 @@ const Hero = () => {
     >
       <div className="absolute inset-0 z-10 bg-[#fdf8f0]/35" />
 
-      <div className="relative z-20 flex w-full max-w-[92rem] justify-end px-6">
-        <div className="flex flex-col gap-6 w-[65%]">
+      <motion.div
+        className="pointer-events-none fixed inset-0 z-20 flex items-center justify-end px-6"
+        animate={
+          visible
+            ? { opacity: 1, y: 0, filter: 'blur(0px)' }
+            : { opacity: 0, y: -40, filter: 'blur(8px)' }
+        }
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
+      >
+        <div className="pointer-events-auto flex w-[62%] flex-col gap-6">
           <div>
             <h1 className="text-5xl font-bold tracking-tight text-text">
               Hi, I&apos;m Vanni Fu
@@ -41,7 +89,7 @@ const Hero = () => {
             Contact Me
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
