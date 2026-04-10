@@ -4,29 +4,55 @@ import { useEffect, useRef } from 'react'
 
 const ParallaxBackground = () => {
   const bgRef = useRef<HTMLDivElement>(null)
+  const mouseOffset = useRef({ x: 0, y: 0 })
+  const baseScale = useRef(1.08) // 会被 TechStack 动态修改
+
+  const updateTransform = () => {
+    if (!bgRef.current) return
+    const { x, y } = mouseOffset.current
+    bgRef.current.style.transform = `scale(${baseScale.current}) translate(${x}px, ${y}px)`
+  }
 
   useEffect(() => {
+    // 鼠标视差
     const handleMouseMove = (e: MouseEvent) => {
-      if (!bgRef.current) return
-
-      // 鼠标相对视口中心的偏移，范围 -0.5 到 0.5
       const x = e.clientX / window.innerWidth - 0.5
       const y = e.clientY / window.innerHeight - 0.5
-
-      // 鼠标距中心的距离，0（中心）到 0.7（角落）
       const distance = Math.sqrt(x * x + y * y)
 
-      // 距离越远，模糊越强：0px 到 4px
-      const blur = distance * 6
+      mouseOffset.current = { x: x * 15, y: y * 15 }
 
-      const intensity = 20
+      if (bgRef.current) {
+        bgRef.current.style.filter = `blur(${distance * 6}px)`
+      }
+      updateTransform()
+    }
+    window.addEventListener('mousemove', handleMouseMove)
 
-      bgRef.current.style.transform = `scale(1.08) translate(${x * intensity}px, ${y * intensity}px)`
-      bgRef.current.style.filter = `blur(${blur}px)`
+    // TechStack 出现时背景退后
+    const techStack = document.querySelector('#tech-stack')
+    const observers: IntersectionObserver[] = []
+
+    if (techStack) {
+      const thresholds = Array.from({ length: 21 }, (_, i) => i / 20)
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const ratio = entry.intersectionRatio
+          // ratio 0 → 1 时，scale 从 1.08 缩小到 0.95
+          baseScale.current = 1.08 - ratio * 0.06
+          updateTransform()
+        },
+        { threshold: thresholds }
+      )
+      observer.observe(techStack)
+      observers.push(observer)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      observers.forEach((o) => o.disconnect())
+    }
   }, [])
 
   return (
