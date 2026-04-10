@@ -71,18 +71,46 @@ const TechStack = () => {
       id="tech-stack"
       className="relative flex min-h-screen flex-col items-center justify-center bg-surface"
     >
-      <div className="relative flex min-h-screen flex-col items-center justify-center">
-        <h2 className="mb-12 text-4xl font-semibold text-text">Tech Stack</h2>
+      {/* 整体内容块：标题行 + 图表，左对齐 */}
+      <div className="flex flex-col pl-[24%]">
+        {/* 标题行：h2 + 图例，ml-16 与图表 Y 轴标签对齐 */}
+        <div className="mb-12 ml-16 flex items-center gap-8">
+          <h2 className="whitespace-nowrap text-4xl font-semibold text-text">
+            Tech Stack
+          </h2>
 
-        {/* 图表外层：留出轴标签空间 */}
-        <div className="relative pl-[62%] pb-10">
-          {/* Y 轴标签 */}
-          <span className="absolute left-[33%] top-1/2 -translate-y-1/2 -rotate-90 text-md tracking-widest text-text-muted uppercase">
+          <div className="flex items-center gap-4">
+            {(
+              [
+                { label: 'Frontend', category: 'frontend' },
+                { label: 'Backend', category: 'backend' },
+                { label: 'Database', category: 'database' },
+                { label: 'Cloud & DevOps', category: 'cloud' },
+              ] as { label: string; category: Category }[]
+            ).map(({ label, category }) => (
+              <div
+                key={category}
+                className="flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span
+                  className="h-3 w-4 rounded-full"
+                  style={{ backgroundColor: CATEGORY_COLORS[category] }}
+                />
+                <span className="text-xs text-text-muted">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 图表行：Y 轴标签 + 图表并排 */}
+        <div className="flex items-center gap-4 pb-10">
+          {/* Y 轴标签：旋转后自然地处于图表左侧 */}
+          <span className="-rotate-90 translate-x-14 whitespace-nowrap text-md tracking-widest text-text-muted uppercase">
             Proficiency
           </span>
 
           {/* 图表区域 */}
-          <div className="relative h-[500px] w-[900px] border-l-2 border-b-2 border-border">
+          <div className="relative h-[500px] w-[800px] border-l-2 border-b-2 border-border">
             {/* X 轴标签 */}
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-md tracking-widest text-text-muted uppercase">
               Frequency of Use
