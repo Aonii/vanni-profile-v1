@@ -30,8 +30,16 @@ body {
   color: #292218;
 }
 
-* {
-  cursor: none;
+*,
+*::before,
+*::after,
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
+  cursor: none !important;
 }
 
 @keyframes glow-pulse {
