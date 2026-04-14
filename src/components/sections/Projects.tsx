@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <div className="group relative flex h-50 w-full overflow-hidden rounded-2xl border border-border bg-white/60 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-[transform,box-shadow] duration-100 hover:-translate-y-0.1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)]">
+    <div className="group relative flex h-52 w-full overflow-hidden rounded-2xl border border-border bg-white/60 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-[transform,box-shadow] duration-100 hover:-translate-y-0.1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)]">
       {/* 左侧 1/3：项目图片 */}
       <div className="relative w-1/3 shrink-0 overflow-hidden">
         <Image
@@ -71,7 +71,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
 
         {/* 下：description */}
-        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-text-muted">
+        <p className="mt-3 line-clamp-5 text-sm leading-relaxed text-text-muted">
           {project.description}
         </p>
 
