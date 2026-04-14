@@ -56,7 +56,7 @@ const Hero = () => {
         }
         transition={{ duration: 0.6, ease: 'easeInOut' }}
       >
-        <div className="pointer-events-auto flex w-[62%] flex-col gap-6">
+        <div className="pointer-events-none flex w-[62%] flex-col gap-6">
           <div>
             <h1 className="text-5xl font-bold tracking-tight text-text">
               Hi, I&apos;m Vanni Fu
@@ -84,7 +84,7 @@ const Hero = () => {
           </div>
           <a
             href="mailto:vanni1919@outlook.com"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-accent/60 px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-80"
+            className="pointer-events-auto inline-flex w-fit items-center gap-2 rounded-full bg-accent/60 px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-80"
           >
             Contact Me
           </a>
