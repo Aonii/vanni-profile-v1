@@ -2,12 +2,30 @@
 // Phase 3 实现：项目展示卡片
 import Image from 'next/image'
 
+type TagCategory = 'frontend' | 'backend' | 'database' | 'cloud'
+
+interface Tag {
+  name: string
+  category: TagCategory
+}
+
 interface Project {
   name: string
   date: string
   description: string
   image: string
   link: string
+  tags?: Tag[]
+}
+
+const TAG_COLORS: Record<
+  TagCategory,
+  { text: string; border: string; bg: string }
+> = {
+  frontend: { text: '#16a34a', border: '#22c55e', bg: '#22c55e18' },
+  backend: { text: '#b45309', border: '#b45309', bg: '#b4530918' },
+  database: { text: '#2563eb', border: '#3b82f6', bg: '#3b82f618' },
+  cloud: { text: '#a16207', border: '#eab308', bg: '#eab30818' },
 }
 
 const PROJECTS: Project[] = [
@@ -18,6 +36,14 @@ const PROJECTS: Project[] = [
       'A full-stack personal website built with Next.js 14, Tailwind CSS, and Framer Motion. Features an interactive 3D bird cursor, parallax background, animated tech stack scatter plot, and a contact form backed by PostgreSQL and Resend.',
     image: '/images/project-1.png',
     link: '#',
+    tags: [
+      { name: 'React', category: 'frontend' },
+      { name: 'TypeScript', category: 'frontend' },
+      { name: 'Next.js', category: 'frontend' },
+      { name: 'MongoDB', category: 'database' },
+      { name: 'AWS', category: 'cloud' },
+      { name: 'Spring Boot', category: 'backend' },
+    ],
   },
   {
     name: 'Mooc e-learning',
@@ -26,6 +52,11 @@ const PROJECTS: Project[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.',
     image: '/images/project-2.png',
     link: '#',
+    tags: [
+      { name: 'React', category: 'frontend' },
+      { name: 'Node.js', category: 'backend' },
+      { name: 'MySQL', category: 'database' },
+    ],
   },
   {
     name: 'EtoISL',
@@ -75,11 +106,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {project.description}
         </p>
 
-        {/* 右下角：More Detail 按钮 */}
-        <div className="mt-4 flex justify-end">
+        {/* 底部：技术标签（左）+ More Detail 按钮（右） */}
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-1.5">
+            {project.tags?.map((tag) => (
+              <span
+                key={tag.name}
+                className="rounded-full border px-2.5 py-0.5 text-xs font-medium"
+                style={{
+                  color: TAG_COLORS[tag.category].text,
+                  borderColor: TAG_COLORS[tag.category].border,
+                  backgroundColor: TAG_COLORS[tag.category].bg,
+                }}
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
           <a
             href={project.link}
-            className="rounded-lg border border-border px-4 py-1.5 text-sm text-text-muted transition-[border-color,color] duration-200 hover:border-accent hover:text-accent"
+            className="shrink-0 rounded-lg border border-border px-4 py-1.5 text-sm text-text-muted transition-[border-color,color] duration-200 hover:border-accent hover:text-accent"
           >
             More Detail →
           </a>
