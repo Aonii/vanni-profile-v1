@@ -38,7 +38,7 @@ const PROJECTS: Project[] = [
     link: '#',
     tags: [
       { name: 'React', category: 'frontend' },
-      { name: 'TypeScript', category: 'frontend' },
+      { name: 'TS', category: 'frontend' },
       { name: 'Next.js', category: 'frontend' },
       { name: 'MongoDB', category: 'database' },
       { name: 'AWS', category: 'cloud' },
