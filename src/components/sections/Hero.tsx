@@ -2,42 +2,39 @@
 // Phase 2 实现：Three.js 粒子效果 + 打字机动效 + 鼠标视差
 
 import { motion } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const Hero = () => {
   const [visible, setVisible] = useState(true)
-  const prevScrollY = useRef(0)
-  const prevRatio = useRef(0)
 
   useEffect(() => {
-    prevScrollY.current = window.scrollY
-
+    const heroSection = document.querySelector('#hero')
     const techStack = document.querySelector('#tech-stack')
-    if (!techStack) return
+    if (!heroSection || !techStack) return
 
-    const observer = new IntersectionObserver(
+    // Observer 1：监听 Hero section 自身 → 可见时显示自我介绍
+    const heroObserver = new IntersectionObserver(
       ([entry]) => {
-        const ratio = entry.intersectionRatio
-        const currentScrollY = window.scrollY
-        const isScrollingDown = currentScrollY > prevScrollY.current
-        const isRatioIncreasing = ratio > prevRatio.current
-
-        prevScrollY.current = currentScrollY
-        prevRatio.current = ratio
-
-        if (isScrollingDown && isRatioIncreasing && ratio >= 0.33) {
-          // 只有 下滑 + ratio 增大 → 隐藏
-          setVisible(false)
-        } else if (!isScrollingDown && !isRatioIncreasing && ratio < 0.33) {
-          // 只有 上滑 + ratio 减小 → 显示
-          setVisible(true)
-        }
+        if (entry.intersectionRatio >= 0.67) setVisible(true)
       },
-      { threshold: [0, 0.33] }
+      { threshold: [0.67] }
     )
 
-    observer.observe(techStack)
-    return () => observer.disconnect()
+    // Observer 2：监听 TechStack → 出现 1/3 时隐藏自我介绍
+    const techObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.intersectionRatio >= 0.33) setVisible(false)
+      },
+      { threshold: [0.33] }
+    )
+
+    heroObserver.observe(heroSection)
+    techObserver.observe(techStack)
+
+    return () => {
+      heroObserver.disconnect()
+      techObserver.disconnect()
+    }
   }, [])
 
   return (

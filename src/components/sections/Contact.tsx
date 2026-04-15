@@ -3,14 +3,14 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative flex min-h-screen flex-col items-center justify-center"
+      className="relative flex min-h-screen flex-col items-center justify-center pl-[20%]"
     >
       <div className="absolute inset-0 z-10 bg-[#fdf8f0]/35" />
       <h2 className="relative z-20 text-3xl font-semibold text-text">
-        Contact
+        Thank you for exploring my portfolio～
       </h2>
       <p className="relative z-20 mt-3 text-text-muted">
-        联系表单 — Phase 5 实现
+        If you are interested, feel free to <strong>Contact me</strong>
       </p>
     </section>
   )
