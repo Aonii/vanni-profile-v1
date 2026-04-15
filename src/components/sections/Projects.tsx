@@ -61,6 +61,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
           <Link
             href={`/projects/${project.id}`}
+            scroll={false}
             className="shrink-0 rounded-lg border border-border px-4 py-1.5 text-sm text-text-muted transition-[border-color,color] duration-200 hover:border-accent hover:text-accent"
           >
             More Detail →

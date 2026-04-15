@@ -21,6 +21,7 @@ const Agenda = () => {
 
   useEffect(() => {
     prevScrollY.current = window.scrollY
+    prevRatio.current = 0
     const observers: IntersectionObserver[] = []
 
     const techStack = document.querySelector('#tech-stack')
@@ -71,7 +72,7 @@ const Agenda = () => {
     observers.push(sectionObserver)
 
     return () => observers.forEach((o) => o.disconnect())
-  }, [])
+  }, [pathname])
 
   // 只在首页显示
   if (pathname !== '/') return null

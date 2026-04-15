@@ -55,7 +55,7 @@ Key highlights:
       { name: 'MongoDB', category: 'database' },
       { name: 'AWS', category: 'cloud' },
     ],
-    link: 'https://github.com/fuaoni',
+    link: 'https://github.com/Aonii',
   },
   {
     id: 'mooc-elearning',
@@ -79,7 +79,7 @@ Key highlights:
       { name: 'Node.js', category: 'backend' },
       { name: 'MySQL', category: 'database' },
     ],
-    link: 'https://github.com/fuaoni',
+    link: 'https://github.com/Aonii',
   },
   {
     id: 'etoisl',
@@ -103,6 +103,6 @@ Key highlights:
       { name: 'Three.js', category: 'frontend' },
       { name: 'Python', category: 'backend' },
     ],
-    link: 'https://github.com/fuaoni',
+    link: 'https://github.com/Aonii',
   },
 ]

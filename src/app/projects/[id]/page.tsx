@@ -1,26 +1,21 @@
 'use client'
 
 import { notFound, useParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { PROJECTS, TAG_COLORS } from '@/lib/projects'
 
 const ProjectDetailPage = () => {
-  const router = useRouter()
   const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const project = PROJECTS.find((p) => p.id === id)
   if (!project) notFound()
 
   return (
     <main className="min-h-screen bg-surface px-8 py-16 md:px-24 lg:px-40">
-      {/* 返回按钮 */}
-      <button
-        onClick={() => router.back()}
-        className="mb-10 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-accent"
-      >
-        ← Back to Projects
-      </button>
-
       {/* 标题区 */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-4xl font-bold text-text">{project.name}</h1>
