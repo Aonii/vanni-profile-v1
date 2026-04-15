@@ -4,7 +4,12 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 const Hero = () => {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    // 恢复浏览器默认的 scroll 记忆行为
+    history.scrollRestoration = 'auto'
+  }, [])
 
   useEffect(() => {
     const heroSection = document.querySelector('#hero')
