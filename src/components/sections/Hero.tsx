@@ -1,5 +1,4 @@
 'use client'
-// Phase 2 实现：Three.js 粒子效果 + 打字机动效 + 鼠标视差
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'

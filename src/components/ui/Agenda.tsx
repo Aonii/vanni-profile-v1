@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 const SECTIONS = [
   { id: 'hero', label: ' About Me' },
@@ -12,6 +13,7 @@ const SECTIONS = [
 ]
 
 const Agenda = () => {
+  const pathname = usePathname()
   const [visible, setVisible] = useState(true)
   const [activeSection, setActiveSection] = useState<string>('hero')
   const prevScrollY = useRef(0)
@@ -70,6 +72,9 @@ const Agenda = () => {
 
     return () => observers.forEach((o) => o.disconnect())
   }, [])
+
+  // 只在首页显示
+  if (pathname !== '/') return null
 
   return (
     <div className="fixed left-[18%] top-1/2 z-40 -translate-y-1/2">
