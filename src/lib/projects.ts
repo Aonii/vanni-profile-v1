@@ -33,25 +33,27 @@ export const PROJECTS: Project[] = [
     name: 'Virtual Coach',
     date: 'Jul 2025 – Oct 2025',
     description:
-      'An AI-powered fitness coaching platform with personalised workout plans, real-time form feedback, and progress tracking.',
-    detail: `Virtual Coach is a full-stack AI fitness application that delivers personalised coaching experiences at scale.
+      'A real-time fraud detection platform that captures voice calls, transcribes speech, and uses GPT-4o to instantly surface risk scores and red-flag warnings for banking staff.',
+    detail: `Virtual Coach is a real-time fraud detection platform built for banking operations. When a staff member initiates a call with a customer, the system captures live audio, converts speech to text, and invokes GPT-4o to analyse fraud risk — surfacing a risk score and red-flag warnings on the UI instantly.
 
-The platform analyses users' fitness goals, current level, and available equipment to generate adaptive workout plans. Real-time pose estimation provides instant form feedback, reducing injury risk and improving training efficiency.
+I was primarily responsible for the front-end core components, back-end AI trigger logic, and AWS deployment support.
 
 Key highlights:
-• Personalised workout generation powered by GPT-4 and custom prompt engineering
-• Real-time pose detection using MediaPipe running entirely in the browser
-• Progress dashboard with charts and weekly insights
-• RESTful API built with Spring Boot and secured with JWT authentication
-• Data stored in MongoDB Atlas with Redis caching for session management
-• Deployed on AWS EC2 with S3 for media storage and CloudFront CDN`,
-    image: '/images/project-1.png',
+• Real-time voice capture and speech-to-text transcription streamed to the UI via Socket.IO
+• GPT-4o integration for on-the-fly fraud risk analysis with structured risk scoring
+• Global state management with Zustand; REST API calls via Axios
+• Java Spring Boot backend with Sa-Token authentication and MongoDB
+• CI/CD pipeline via AWS CodeCommit & CodePipeline; logs monitored through CloudWatch
+• Secrets managed with AWS Parameter Store; secure remote DB access via SSH Jump Host`,
+    image: '/images/project-1-1.png',
     video: '/videos/project-1.mp4',
     tags: [
       { name: 'React', category: 'frontend' },
-      { name: 'TS', category: 'frontend' },
+      { name: 'TypeScript', category: 'frontend' },
       { name: 'Next.js', category: 'frontend' },
+      { name: 'Socket.IO', category: 'frontend' },
       { name: 'Spring Boot', category: 'backend' },
+      { name: 'GPT-4o', category: 'backend' },
       { name: 'MongoDB', category: 'database' },
       { name: 'AWS', category: 'cloud' },
     ],
@@ -62,7 +64,7 @@ Key highlights:
     name: 'Mooc e-learning',
     date: 'Feb 2025 – Jun 2025',
     description:
-      'A scalable online learning platform supporting course creation, video streaming, quizzes, and student progress tracking.',
+      'A scalable online learning platform supporting course creation, media streaming, session, and user management.',
     detail: `Mooc e-learning is a full-featured online education platform inspired by Coursera and Udemy.
 
 Instructors can create structured courses with video lectures, reading materials, and interactive quizzes. Students get a personalised dashboard tracking their progress across enrolled courses.

@@ -4,22 +4,37 @@
 interface ExperienceItem {
   title: string
   company: string
+  location: string
   period: string
-  description: string
+  bullets: string[]
 }
 
 const EXPERIENCE_LIST: ExperienceItem[] = [
   {
-    title: 'Full-Stack Engineer Intern',
-    company: 'Cyberoo.AI',
-    period: '07/2025 — 10/2025',
-    description: '负责核心业务功能开发，主导前端架构升级，推动工程化规范落地。',
+    title: 'Developer · Business Analyst',
+    company: 'Cybroo.ai – Virtual Coach',
+    location: 'Sydney',
+    period: 'Jul 2025 – Oct 2025',
+    bullets: [
+      'Built key fraud monitoring features — risk score visualisation, red flag alerts, call history page, and heat map — using React + TypeScript (Next.js).',
+      'Integrated Socket.IO for real-time streaming of fraud detection results from backend services to the frontend dashboard.',
+      'Implemented trigger logic that invokes GPT-4o analysis when cached transcripts reach multiples of 5.',
+      'Designed UI components with Ant Design and Chakra UI; produced wireframes and process flow diagrams to align feature requirements.',
+      'Configured environment variables (.env.*, parameters.yml) across frontend and backend; added health-check endpoints for improved monitoring.',
+      'Monitored production deployments via AWS CodePipeline and CloudWatch; utilised SSH jump host for secure remote MongoDB access.',
+    ],
   },
   {
-    title: 'Advertising Marketing Intern',
-    company: 'Qutoutiao',
-    period: '03/2022 — 07/2022',
-    description: '参与多个 Web 项目迭代，积累前后端协作与工程化实践经验。',
+    title: 'Marketing Intern',
+    company: 'Qutoutiao Inc.',
+    location: 'Shanghai, China',
+    period: 'Mar 2022 – Jul 2022',
+    bullets: [
+      'Retrieved and collated product data and imagery from client databases using SQL.',
+      'Managed ad uploads and placements across splash, landscape, and portrait formats; tracked impressions, clicks, and conversions.',
+      'Analysed click-through, view, and conversion rates using Excel; drafted data analysis reports with strategic recommendations for clients.',
+      'Liaised directly with client representatives and internal stakeholders to align expectations and project priorities.',
+    ],
   },
 ]
 
@@ -34,25 +49,37 @@ const Experience = () => {
       {/* 时间轴容器 */}
       <ol className="relative ml-16 border-l border-border">
         {EXPERIENCE_LIST.map((item) => (
-          <li key={item.company} className="mb-10 ml-6">
+          <li key={item.company} className="mb-12 ml-6">
             {/* 时间轴圆点 */}
-            <span className="absolute -left-[9px] flex h-4 w-4 items-center justify-center rounded-full bg-accent" />
+            <span className="absolute -left-[9px] h-4 w-4 rounded-full bg-accent" />
 
-            {/* 时间段 */}
-            <time className="mb-1 block text-sm text-text-muted">
-              {item.period}
-            </time>
+            {/* 时间段 & 地点 */}
+            <div className="mb-1 flex items-center gap-3">
+              <time className="text-sm text-text-muted">{item.period}</time>
+              <span className="text-xs text-text-muted opacity-60">
+                {item.location}
+              </span>
+            </div>
 
             {/* 职位 & 公司 */}
             <h3 className="text-lg font-semibold text-text">{item.title}</h3>
-            <p className="mb-2 text-sm font-medium text-accent">
+            <p className="mb-3 text-sm font-medium text-accent">
               {item.company}
             </p>
 
-            {/* 描述 */}
-            <p className="text-sm leading-relaxed text-text-muted">
-              {item.description}
-            </p>
+            {/* Bullet points */}
+            <ul className="mb-3 space-y-1.5">
+              {item.bullets.map((b, i) => (
+                <li
+                  key={i}
+                  className="flex gap-2 text-sm leading-relaxed text-text-muted"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+
           </li>
         ))}
       </ol>
