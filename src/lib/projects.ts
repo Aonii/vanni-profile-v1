@@ -102,7 +102,6 @@ Key highlights:
     image: '/images/project-3.png',
     tags: [
       { name: 'React', category: 'frontend' },
-      { name: 'Three.js', category: 'frontend' },
       { name: 'Python', category: 'backend' },
     ],
     link: 'https://github.com/Aonii',

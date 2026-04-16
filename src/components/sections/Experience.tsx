@@ -11,7 +11,7 @@ interface ExperienceItem {
 
 const EXPERIENCE_LIST: ExperienceItem[] = [
   {
-    title: 'Developer · Business Analyst',
+    title: 'Software Developer Intern',
     company: 'Cybroo.ai – Virtual Coach',
     location: 'Sydney',
     period: 'Jul 2025 – Oct 2025',
@@ -79,7 +79,6 @@ const Experience = () => {
                 </li>
               ))}
             </ul>
-
           </li>
         ))}
       </ol>
